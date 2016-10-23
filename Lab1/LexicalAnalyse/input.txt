@@ -1,0 +1,12 @@
+int min(int a,int b){
+    if(a<b){
+        return a;
+    }else{
+        return b;
+    }
+}
+
+int main(){
+    this.min(3,4);
+    return 0;
+}
