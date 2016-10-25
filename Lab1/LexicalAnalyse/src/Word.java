@@ -13,6 +13,7 @@ public class Word {
     public void add(char c){
         value[index++]=c;
         value[index]='\0';
+//        System.out.println("c="+c+"pos="+index);
     }
 
     public char[] getValue() {

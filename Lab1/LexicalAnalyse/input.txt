@@ -5,8 +5,11 @@ int min(int a,int b){
         return b;
     }
 }
-
 int main(){
-    this.min(3,4);
+    int result=this.min(3,4);
+    result*=2;
+    String classroom="result";
+    /*double min value*/
+    classroom=result/2+"";
     return 0;
 }

@@ -10,35 +10,33 @@ public class Analyser {
     //reserved words
     private String[] reservedWords={"void","class","public",
             "private","protected","for","if","else","while","do",
-            "int","double","char","boolean","string","new","try",
-            "catch","static","return","this"};
+            "int","double","char","boolean","String","new","try",
+            "catch","static","return","this","main"};
     //operators
-    private String[] operators={"+","-","*","/",">","<","==",
-            "=",">=","<=","+=","-=","*=","/=","&&","||","|",
-            "&","!","!="};
+//    private String[] operators={"+","-","*","/",">","<","==",
+//            "=",">=","<=","+=","-=","*=","/=","&&","||","|",
+//            "&","!","!="};
     //notes
-    private String[] notes={"/*","*/"};
+//    private String[] notes={"/*","*/"};
     //punctuation
-    private String[] punctuation={"{","}",";",".","(",")","[","]",":","\""};
+//    private String[] punctuation={"{","}",";",".","(",")","[","]",":","\"",","};
 
 /*===============================================================================================*/
 
     //deal with the input part
-    public char[] readFromTXT(){
-        char[] input=new char[200];
+    private char[] readFromTXT(){
+        char[] input=new char[500];
         String inputFile="input.txt";
         try {
             BufferedReader bf=new BufferedReader(new InputStreamReader(new FileInputStream(new File(inputFile))));
-            String line="";
+            String line;
             int index=0;
             while((line=bf.readLine())!=null){
                 //delete blanks
                 char[] tmp=line.toCharArray();
-                for(int i=0;i<tmp.length;i++){
+                for (char a : tmp) {
                     //delete all the blank characters
-                    if((tmp[i]!=' ')&&(tmp[i]!='\t')){
-                        input[index++]=tmp[i];
-                    }
+                    input[index++] = a;
                 }
                 input[index++]='\n';
             }
@@ -53,13 +51,13 @@ public class Analyser {
     }
 
     //analyse the input string
-    public List<Token> scanner(char[] input){
+    private List<Token> scanner(char[] input){
         List<Token> tokens=new ArrayList<>();
         int p_reader=0;
+        Word word;
         //begin with letter
         while (input[p_reader]!='#') {
-            Word word=new Word();
-
+            word=new Word();
             if (isLetter(input[p_reader])) {
                 word.add(input[p_reader]);
                 p_reader++;
@@ -68,24 +66,22 @@ public class Analyser {
                     //get an ID or ReservedWord
                     //ReservedWord has priority
                     String s=ch2s(word.getValue());
-                    Token token;
-                    if(isReservedWord(s)) {
-                        token = new Token("ReservedWord", s);
-                        tokens.add(token);
-                        break;
-                    }
-
+//                    if(isReservedWord(s)) {
+//                        break;
+//                    }
                     word.add(input[p_reader]);
                     p_reader++;
-
-
                 }
                 String s=ch2s(word.getValue());
-                if(!isReservedWord(s)){
+                if(isReservedWord(s)){
+//                    System.out.println(s);
+                    Token token=new Token("ReservedWord",s);
+                    tokens.add(token);
+                }else{
+//                    System.out.println(s);
                     Token token=new Token("ID",s);
                     tokens.add(token);
                 }
-
             }
             //begin with number
             else if(isNumber(input[p_reader])){
@@ -116,6 +112,7 @@ public class Analyser {
                     Token token=new Token("Number",s);
                     tokens.add(token);
                 }
+
             }
             //begin with other character
             else{
@@ -127,8 +124,10 @@ public class Analyser {
                             word.add(input[p_reader]);
                             p_reader++;
                             Token token = new Token("Operator+=", ch2s(word.getValue()));
+                            tokens.add(token);
                         }else {
                             Token token = new Token("Operator+", ch2s(word.getValue()));
+                            tokens.add(token);
                         }
                         break;
                     }
@@ -216,9 +215,11 @@ public class Analyser {
                                         p_reader++;
                                         //if next is '/', found it, else continue
                                         if(input[p_reader]=='/'){
-                                            found=true;
+                                            word.add(input[p_reader]);
                                             token=new Token("Notes",ch2s(word.getValue()));
                                             tokens.add(token);
+                                            found=true;
+                                            p_reader++;
                                         }
                                     }
                                 }
@@ -234,7 +235,6 @@ public class Analyser {
                             token = new Token("Operator/", ch2s(word.getValue()));
                             tokens.add(token);
                         }
-
                         break;
                     }
                     case '=':{
@@ -324,6 +324,7 @@ public class Analyser {
                     case ';':{
                         p_reader++;
                         Token token=new Token("Operator;",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case '\"':{
@@ -354,41 +355,59 @@ public class Analyser {
                     case ':':{
                         p_reader++;
                         Token token=new Token("Punctuation:",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case '{':{
                         p_reader++;
                         Token token=new Token("Punctuation{",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case '}':{
                         p_reader++;
                         Token token=new Token("Punctuation}",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case '[':{
                         p_reader++;
                         Token token=new Token("Punctuation[",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case ']':{
                         p_reader++;
                         Token token=new Token("Punctuation]",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case '(':{
                         p_reader++;
                         Token token=new Token("Punctuation(",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case ')':{
                         p_reader++;
                         Token token=new Token("Punctuation)",ch2s(word.getValue()));
+                        tokens.add(token);
                         break;
                     }
                     case '.':{
                         p_reader++;
                         Token token=new Token("Punctuation.",ch2s(word.getValue()));
+                        tokens.add(token);
+                        break;
+                    }
+                    case ',':{
+                        p_reader++;
+                        Token token=new Token("Punctuation,",ch2s(word.getValue()));
+                        tokens.add(token);
+                        break;
+                    }
+                    default:{
+                        p_reader++;
                         break;
                     }
                 }
@@ -398,12 +417,18 @@ public class Analyser {
     }
 
     //deal with the output part
-    public void writeToTXT(List<Token> tokens){
+    private void writeToTXT(List<Token> tokens){
+        File outputFile=new File("output.txt");
         try {
-            BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("output.txt"))));
-            for(int i=0;i<tokens.size();i++){
-                bw.write(tokens.get(i).toString());
+            if(!outputFile.exists()){
+                outputFile.createNewFile();
             }
+            BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile)));
+            for(Token token:tokens){
+                bw.write(token.toString());
+                bw.newLine();
+            }
+            bw.flush();
             bw.close();
         } catch (FileNotFoundException e) {
             System.out.println("Oops...open file failed");
@@ -416,38 +441,35 @@ public class Analyser {
     public static void main(String[] args){
         Analyser analyser=new Analyser();
         char[] input=analyser.readFromTXT();
+//        for(int i=0;i<input.length;i++){
+//            System.out.print(input[i]);
+//        }
         List<Token> tokens=analyser.scanner(input);
         analyser.writeToTXT(tokens);
     }
-/*==========================================================================================*/
+    /*==========================================================================================*/
     private boolean isLetter(char i){
-        if((i>='a'&&i<='z')||(i>='A')||(i<='Z')){
-            return true;
-        }
-        return false;
+        return ((i>='a'&&i<='z')||(i>='A')&&(i<='Z'));
     }
 
     private boolean isNumber(char i){
-        if(i>='0'&&i<='9'){
-            return true;
-        }
-        return false;
+        return (i>='0'&&i<='9');
     }
 
     private String ch2s(char[] ch){
-        String s="";
+        String s;
         int i=0;
         while(ch[i]!='\0'){
             i++;
         }
         i--;
-        s=String.valueOf(ch).substring(0,i);
+        s=String.valueOf(ch).substring(0,i+1);
         return s;
     }
 
     private boolean isReservedWord(String s){
-        for(int i=0;i<reservedWords.length;i++){
-            if(s.equals(reservedWords[i])){
+        for (String reservedWord : reservedWords) {
+            if (s.equals(reservedWord)) {
                 return true;
             }
         }
