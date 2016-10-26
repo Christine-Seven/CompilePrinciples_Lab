@@ -19,7 +19,7 @@ public class Token {
 
     public Token(String type,String code,String error){
         this.type="UNKNOWN";
-        this.code=this.code;
+        this.code=code;
         this.error=error;
     }
 

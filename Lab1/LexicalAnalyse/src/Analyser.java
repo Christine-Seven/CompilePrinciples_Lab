@@ -12,14 +12,14 @@ public class Analyser {
             "private","protected","for","if","else","while","do",
             "int","double","char","boolean","String","new","try",
             "catch","static","return","this","main"};
-    //operators
-//    private String[] operators={"+","-","*","/",">","<","==",
-//            "=",">=","<=","+=","-=","*=","/=","&&","||","|",
-//            "&","!","!="};
-    //notes
-//    private String[] notes={"/*","*/"};
-    //punctuation
-//    private String[] punctuation={"{","}",";",".","(",")","[","]",":","\"",","};
+//    operators
+    private String[] operators={"+","-","*","/",">","<","==",
+            "=",">=","<=","+=","-=","*=","/=","&&","||","|",
+            "&","!","!="};
+//    notes
+    private String[] notes={"/*","*/"};
+//    punctuation
+    private String[] punctuation={"{","}",";",".","(",")","[","]",":","\"",","};
 
 /*===============================================================================================*/
 

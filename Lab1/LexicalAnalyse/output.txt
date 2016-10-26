@@ -26,9 +26,15 @@ Token{type='ID', code='b', error='null'}
 Token{type='Operator;', code=';', error='null'}
 Token{type='Punctuation}', code='}', error='null'}
 Token{type='Punctuation}', code='}', error='null'}
-Token{type='ReservedWord', code='int', error='null'}
+Token{type='ReservedWord', code='public', error='null'}
+Token{type='ReservedWord', code='static', error='null'}
+Token{type='ReservedWord', code='void', error='null'}
 Token{type='ReservedWord', code='main', error='null'}
 Token{type='Punctuation(', code='(', error='null'}
+Token{type='ReservedWord', code='String', error='null'}
+Token{type='Punctuation[', code='[', error='null'}
+Token{type='Punctuation]', code=']', error='null'}
+Token{type='ID', code='arg0', error='null'}
 Token{type='Punctuation)', code=')', error='null'}
 Token{type='Punctuation{', code='{', error='null'}
 Token{type='ReservedWord', code='int', error='null'}
@@ -38,14 +44,14 @@ Token{type='ReservedWord', code='this', error='null'}
 Token{type='Punctuation.', code='.', error='null'}
 Token{type='ID', code='min', error='null'}
 Token{type='Punctuation(', code='(', error='null'}
-Token{type='Number', code='3', error='null'}
+Token{type='Number', code='305', error='null'}
 Token{type='Punctuation,', code=',', error='null'}
-Token{type='Number', code='4', error='null'}
+Token{type='Number', code='40', error='null'}
 Token{type='Punctuation)', code=')', error='null'}
 Token{type='Operator;', code=';', error='null'}
 Token{type='ID', code='result', error='null'}
 Token{type='Operator*=', code='*=', error='null'}
-Token{type='Number', code='2', error='null'}
+Token{type='Negative Float', code='-2.7', error='null'}
 Token{type='Operator;', code=';', error='null'}
 Token{type='ReservedWord', code='String', error='null'}
 Token{type='ID', code='classroom', error='null'}
@@ -57,7 +63,9 @@ Token{type='ID', code='classroom', error='null'}
 Token{type='Operator=', code='=', error='null'}
 Token{type='ID', code='result', error='null'}
 Token{type='Operator/', code='/', error='null'}
-Token{type='Number', code='2', error='null'}
+Token{type='Punctuation(', code='(', error='null'}
+Token{type='UNKNOWN', code='-2.', error='Fail to Recognize!'}
+Token{type='Punctuation)', code=')', error='null'}
 Token{type='Operator+', code='+', error='null'}
 Token{type='Punctuation""', code='""', error='null'}
 Token{type='Operator;', code=';', error='null'}

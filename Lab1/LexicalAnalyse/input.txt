@@ -5,11 +5,11 @@ int min(int a,int b){
         return b;
     }
 }
-int main(){
-    int result=this.min(3,4);
-    result*=2;
+public static void main(String[] arg0){
+    int result=this.min(305,40);
+    result*=-2.7;
     String classroom="result";
     /*double min value*/
-    classroom=result/2+"";
+    classroom=result/(-2.)+"";
     return 0;
 }
